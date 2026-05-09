@@ -1,440 +1,789 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedBill Pro – Expert Medical Billing & RCM Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apex Health Billing | Top-rated Medical Billing Company in the USA</title>
+<meta name="description" content="Apex Health Billing provides end-to-end medical billing and coding services to over 40 medical specialties. Reduce denials, get paid faster." />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --purple:       #8e24aa;
+  --purple-dark:  #6a1b80;
+  --purple-mid:   #9c27b0;
+  --purple-light: #f3e5f5;
+  --green:        #8cc63f;
+  --green-dark:   #6fa82e;
+  --green-light:  #f1f8e9;
+  --navy:         #0b132b;
+  --navy-mid:     #111d3a;
+  --navy-light:   #1a2340;
+  --light-bg:     #f8fafc;
+  --border:       #e5e7eb;
+  --text-dark:    #0f172a;
+  --text-mid:     #374151;
+  --text-gray:    #6b7280;
+  --white:        #ffffff;
+}
 
-  <style>
-    :root {
-      --navy:     #0A1628;
-      --blue:     #1655C0;
-      --blue-mid: #2870E8;
-      --sky:      #5BA4F5;
-      --ice:      #E8F1FD;
-      --white:    #FFFFFF;
-      --gray-50:  #F7F9FC;
-      --gray-200: #DDE4EF;
-      --gray-500: #6B7A96;
-      --gray-800: #1E2A3B;
-      --green:    #0DBB7A;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body:    'DM Sans', system-ui, sans-serif;
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --shadow-card: 0 4px 24px rgba(10,22,40,0.09);
-      --shadow-btn:  0 8px 24px rgba(22,85,192,0.32);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { cursor: pointer; }
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family:'Poppins',sans-serif; font-size:15px; color:var(--text-dark); overflow-x:hidden; line-height:1.65; }
+h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; line-height:1.2; }
+a { text-decoration:none; transition:color .2s; }
+img { max-width:100%; }
 
-    .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 90px 0; }
-    .section--alt { background: var(--gray-50); }
+/* ── Utilities ── */
+.section-eyebrow {
+  display:inline-block; font-family:'Montserrat',sans-serif;
+  font-size:11.5px; font-weight:700; letter-spacing:2.5px;
+  text-transform:uppercase; color:var(--purple); margin-bottom:10px;
+}
+.section-title { font-size:clamp(22px,3vw,36px); font-weight:800; color:var(--text-dark); margin-bottom:14px; }
+.section-sub { color:var(--text-gray); font-size:15px; line-height:1.75; }
 
-    .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); background: var(--ice); border-radius: 100px; padding: 5px 14px; margin-bottom: 14px; }
-    .section-title { font-family: var(--font-display); font-size: clamp(26px, 3.8vw, 42px); line-height: 1.18; color: var(--navy); margin-bottom: 14px; }
-    .section-sub { font-size: 16px; color: var(--gray-500); line-height: 1.72; max-width: 560px; }
-    .section-header { margin-bottom: 52px; }
+/* ═══════════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════════ */
+.topbar { background:var(--navy); padding:7px 0; font-size:13px; }
+.topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-phone { display:flex; align-items:center; gap:8px; color:var(--green); font-weight:600; font-family:'Montserrat',sans-serif; font-size:13px; }
+.topbar-phone a { color:var(--green); }
+.topbar-right { display:flex; align-items:center; gap:6px; }
+.topbar-link {
+  color:#b8c9de; font-size:12.5px; padding:3px 12px;
+  border-radius:999px; border:1px solid #2a3a55;
+  transition:background .2s, color .2s, border-color .2s;
+}
+.topbar-link:hover { background:var(--purple); border-color:var(--purple); color:#fff; }
+.topbar-sep { color:#2a3a55; }
 
-    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 15px; font-weight: 600; border: none; border-radius: var(--radius-sm); transition: transform .2s, box-shadow .2s, background .2s; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--blue); color: var(--white); padding: 14px 28px; box-shadow: var(--shadow-btn); }
-    .btn-primary:hover { background: var(--blue-mid); box-shadow: 0 12px 32px rgba(22,85,192,.42); }
-    .btn-white { background: var(--white); color: var(--blue); padding: 14px 26px; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
-    .btn-white:hover { background: var(--ice); }
+/* ═══════════════════════════════════════════
+   HEADER / NAVBAR
+═══════════════════════════════════════════ */
+.main-header {
+  background:var(--white);
+  box-shadow:0 2px 18px rgba(0,0,0,.08);
+  position:sticky; top:0; z-index:1050;
+  transition:box-shadow .3s;
+}
+.main-header.scrolled { box-shadow:0 4px 28px rgba(0,0,0,.13); }
 
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: .08s; }
-    .d2 { transition-delay: .16s; }
-    .d3 { transition-delay: .24s; }
-    .d4 { transition-delay: .32s; }
-    .d5 { transition-delay: .40s; }
+/* CSS Logo */
+.brand-logo { display:flex; align-items:center; gap:9px; text-decoration:none; flex-shrink:0; }
+.brand-logo .logo-icon {
+  width:38px; height:38px;
+  background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 14px rgba(142,36,170,.35);
+}
+.brand-logo .logo-icon i { color:#fff; font-size:18px; }
+.brand-logo .logo-apex { font-family:'Montserrat',sans-serif; font-weight:900; font-size:20px; color:var(--purple); letter-spacing:-.5px; display:block; }
+.brand-logo .logo-sub { font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; color:var(--green-dark); letter-spacing:.5px; text-transform:uppercase; display:block; line-height:1; }
 
-    /* HEADER */
-    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: rgba(255,255,255,.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); transition: box-shadow .3s; }
-    #header.scrolled { box-shadow: 0 2px 20px rgba(10,22,40,.10); }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 21px; color: var(--navy); }
-    .logo-box { width: 36px; height: 36px; background: var(--blue); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
-    .logo-box svg { width: 20px; height: 20px; fill: #fff; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-800); transition: color .2s; }
-    .nav-links a:hover { color: var(--blue); }
-    .nav-cta { margin-left: 10px; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
-    .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 20px 24px; flex-direction: column; gap: 0; z-index: 998; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 15px; font-weight: 500; color: var(--gray-800); padding: 13px 0; border-bottom: 1px solid var(--gray-200); }
-    .mobile-menu a:last-child { border: none; margin-top: 8px; }
+/* Nav links */
+.navbar { padding:11px 0; }
+.navbar-nav .nav-link {
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:13.5px;
+  color:var(--text-dark) !important; padding:8px 11px !important;
+  border-radius:6px; transition:color .2s, background .2s; white-space:nowrap;
+}
+.navbar-nav .nav-link:hover { color:var(--purple) !important; background:var(--purple-light); }
+.navbar-nav .nav-link .chev { font-size:9px; vertical-align:1px; margin-left:3px; }
 
-    /* HERO */
-    #hero { padding: 136px 0 90px; background: var(--navy); position: relative; overflow: hidden; }
-    #hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(22,85,192,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(22,85,192,.07) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; }
-    .hero-glow { position: absolute; top: -80px; right: -80px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(40,112,232,.24) 0%, transparent 68%); pointer-events: none; }
-    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(22,85,192,.22); border: 1px solid rgba(91,164,245,.28); border-radius: 100px; padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--sky); margin-bottom: 22px; }
-    .badge-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: blink 2.2s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
-    .hero-title { font-family: var(--font-display); font-size: clamp(32px, 4.2vw, 52px); line-height: 1.12; color: var(--white); margin-bottom: 18px; }
-    .hero-title em { font-style: italic; color: var(--sky); }
-    .hero-sub { font-size: 16px; color: rgba(255,255,255,.62); line-height: 1.74; margin-bottom: 34px; max-width: 490px; }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-stats { display: flex; gap: 28px; margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,.09); flex-wrap: wrap; }
-    .hs-val { font-family: var(--font-display); font-size: 28px; color: var(--white); margin-bottom: 4px; }
-    .hs-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.45); }
-    .hero-visual { display: flex; flex-direction: column; gap: 16px; }
-    .hv-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.11); border-radius: var(--radius-md); padding: 22px 24px; backdrop-filter: blur(6px); }
-    .hv-card:nth-child(1) { animation: fA 4.2s ease-in-out infinite; }
-    .hv-card:nth-child(2) { animation: fB 4.2s ease-in-out infinite; margin-left: 28px; }
-    @keyframes fA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
-    @keyframes fB { 0%,100%{transform:translateY(-6px)} 50%{transform:translateY(3px)} }
-    .hvc-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .hvc-icon { width: 42px; height: 42px; background: rgba(22,85,192,.4); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    .hvc-label { font-size: 12px; color: rgba(255,255,255,.5); margin-bottom: 2px; }
-    .hvc-value { font-size: 20px; font-weight: 600; color: var(--white); }
-    .prog-bar { height: 6px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; margin-top: 10px; }
-    .prog-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue-mid), var(--sky)); }
-    .chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .chip { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 100px; border: 1px solid rgba(91,164,245,.32); color: var(--sky); }
+/* Standard Dropdown */
+.navbar-nav .dropdown-menu {
+  border:none; border-top:3px solid var(--purple);
+  box-shadow:0 8px 32px rgba(0,0,0,.12);
+  border-radius:0 0 14px 14px;
+  padding:8px 0; min-width:250px; margin-top:0 !important;
+  animation:dropIn .18s ease;
+}
+@keyframes dropIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+.navbar-nav .dropdown-item {
+  font-size:13.5px; color:var(--text-mid);
+  padding:9px 20px;
+  transition:background .15s, color .15s, padding-left .15s;
+  display:flex; align-items:center; gap:7px;
+}
+.navbar-nav .dropdown-item::before { content:'›'; color:var(--green); font-size:16px; }
+.navbar-nav .dropdown-item:hover { background:var(--purple-light); color:var(--purple); padding-left:26px; }
+.navbar-nav .dropdown-item.view-all { color:var(--purple); font-weight:700; border-top:1px solid var(--border); margin-top:4px; font-family:'Montserrat',sans-serif; }
+.navbar-nav .dropdown-item.view-all::before { content:'→'; }
 
-    /* TRUST */
-    #trust { padding: 24px 0; border-bottom: 1px solid var(--gray-200); }
-    .trust-inner { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center; }
-    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; color: var(--gray-500); }
-    .ti-ico { width: 32px; height: 32px; background: var(--ice); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+/* Mega Menu */
+.mega-parent { position:static !important; }
+.mega-menu-panel {
+  position:absolute; left:0; right:0; top:100%;
+  background:var(--white); border-top:3px solid var(--purple);
+  box-shadow:0 16px 48px rgba(0,0,0,.14);
+  border-radius:0 0 16px 16px;
+  padding:32px 40px 28px; display:none; z-index:1000;
+  animation:dropIn .2s ease;
+}
+.mega-parent:hover .mega-menu-panel { display:block; }
+.mega-menu-col-heading {
+  font-family:'Montserrat',sans-serif; font-size:10.5px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; color:var(--purple);
+  margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+.mega-item {
+  display:flex; align-items:flex-start; gap:13px; padding:11px 12px;
+  border-radius:8px; transition:background .15s; cursor:pointer; color:var(--text-dark); margin-bottom:4px;
+}
+.mega-item:hover { background:var(--purple-light); }
+.mega-item-icon {
+  width:42px; height:42px; border-radius:10px;
+  background:var(--purple-light); display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background .15s;
+}
+.mega-item:hover .mega-item-icon { background:var(--purple); }
+.mega-item-icon i { color:var(--purple); font-size:18px; transition:color .15s; }
+.mega-item:hover .mega-item-icon i { color:#fff; }
+.mega-item-title { font-family:'Montserrat',sans-serif; font-size:13.5px; font-weight:700; color:var(--text-dark); display:block; margin-bottom:2px; }
+.mega-item:hover .mega-item-title { color:var(--purple); }
+.mega-item-desc { font-size:12px; color:var(--text-gray); line-height:1.45; display:block; }
+.mega-promo {
+  background:linear-gradient(135deg,var(--purple) 0%,#5e0d7a 100%);
+  border-radius:14px; padding:24px 20px; color:#fff; height:100%;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.mega-promo h4 { font-size:16px; font-weight:800; margin-bottom:10px; color:#fff; }
+.mega-promo p { font-size:12.5px; opacity:.85; line-height:1.55; margin-bottom:18px; }
+.mega-promo-btn {
+  display:inline-block; background:var(--green); color:#fff;
+  font-size:11px; font-weight:700; padding:6px 14px;
+  border-radius:999px; font-family:'Montserrat',sans-serif;
+}
 
-    /* SERVICES */
-    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
-    .svc-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 30px 26px; position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
-    .svc-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--sky)); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
-    .svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); border-color: rgba(91,164,245,.5); }
-    .svc-card:hover::after { transform: scaleX(1); }
-    .svc-ico { width: 50px; height: 50px; background: var(--ice); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
-    .svc-title { font-family: var(--font-display); font-size: 18px; color: var(--navy); margin-bottom: 9px; }
-    .svc-desc { font-size: 14px; color: var(--gray-500); line-height: 1.66; }
+/* Nav Actions */
+.nav-actions { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.btn-nav-search {
+  width:36px; height:36px; background:var(--light-bg);
+  border:1.5px solid var(--border); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-mid); font-size:14px; cursor:pointer;
+  transition:background .2s, border-color .2s, color .2s;
+}
+.btn-nav-search:hover { background:var(--purple-light); border-color:var(--purple); color:var(--purple); }
+.btn-get-consult {
+  background:var(--purple); color:var(--white) !important;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px;
+  padding:10px 22px; border-radius:999px; border:2px solid var(--purple);
+  transition:background .2s, transform .15s, box-shadow .2s;
+  box-shadow:0 4px 16px rgba(142,36,170,.3); white-space:nowrap;
+}
+.btn-get-consult:hover {
+  background:var(--purple-dark); border-color:var(--purple-dark);
+  transform:translateY(-1px); box-shadow:0 6px 22px rgba(142,36,170,.42);
+}
 
-    /* WHY US */
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .why-panel { background: var(--navy); border-radius: var(--radius-lg); padding: 36px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .stat-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-md); padding: 22px 18px; text-align: center; }
-    .stat-num { font-family: var(--font-display); font-size: 30px; color: var(--white); margin-bottom: 5px; }
-    .stat-num span { color: var(--sky); }
-    .stat-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.45); }
-    .stat-note { margin-top: 9px; font-size: 11px; font-weight: 600; color: var(--green); }
-    .why-features { display: flex; flex-direction: column; gap: 20px; }
-    .why-item { display: flex; gap: 18px; align-items: flex-start; padding: 22px 20px; border-radius: var(--radius-md); transition: background .2s; }
-    .why-item:hover { background: var(--ice); }
-    .wi-num { width: 38px; height: 38px; background: var(--blue); border-radius: var(--radius-sm); color: var(--white); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .wi-title { font-weight: 600; font-size: 15px; color: var(--navy); margin-bottom: 5px; }
-    .wi-desc { font-size: 14px; color: var(--gray-500); line-height: 1.62; }
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero-section {
+  background:var(--navy); position:relative;
+  overflow:hidden; min-height:600px; display:flex; align-items:center;
+}
+.hero-section::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 65% 70% at 75% 50%,rgba(142,36,170,.22) 0%,transparent 70%),
+             radial-gradient(ellipse 40% 60% at 10% 80%,rgba(140,198,63,.06) 0%,transparent 60%);
+}
+.hero-dots {
+  position:absolute; inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.hero-img-pane { position:absolute; right:0; top:0; bottom:0; width:50%; overflow:hidden; }
+.hero-img-pane img {
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 15%,black 35%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 15%,black 35%);
+}
+.hero-content-wrap { position:relative; z-index:2; padding:80px 0 130px; }
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(140,198,63,.15); border:1px solid rgba(140,198,63,.35);
+  color:var(--green); border-radius:999px; padding:5px 16px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:11.5px;
+  letter-spacing:.8px; text-transform:uppercase; margin-bottom:20px;
+}
+.hero-h1 { font-size:clamp(28px,4.2vw,50px); font-weight:900; color:#fff; line-height:1.13; margin-bottom:18px; letter-spacing:-.5px; }
+.hero-h1 .highlight { color:var(--green); }
+.hero-sub { color:#9ab2cb; font-size:15.5px; line-height:1.72; max-width:460px; margin-bottom:30px; }
+.hero-checks { list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin-bottom:36px; max-width:420px; }
+.hero-checks li { display:flex; align-items:center; gap:9px; color:#cdd9e8; font-size:14px; font-weight:500; }
+.hero-checks li i { color:var(--green); font-size:15px; flex-shrink:0; }
 
-    /* PROCESS */
-    .process-wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
-    .process-wrap::before { content: ''; position: absolute; top: 34px; left: calc(10% + 10px); right: calc(10% + 10px); height: 2px; background: linear-gradient(90deg, var(--blue), var(--sky)); z-index: 0; }
-    .step { position: relative; z-index: 1; text-align: center; padding: 0 12px; }
-    .step-circle { width: 68px; height: 68px; border-radius: 50%; background: var(--white); border: 3px solid var(--blue); box-shadow: 0 0 0 6px var(--ice); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-family: var(--font-display); font-size: 20px; color: var(--blue); }
-    .step-title { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 7px; }
-    .step-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+/* Trust badges */
+.hero-badges { display:flex; gap:12px; flex-wrap:wrap; }
+.trust-badge-card {
+  background:rgba(255,255,255,.97); border-radius:12px;
+  padding:10px 16px; display:flex; align-items:center; gap:11px;
+  box-shadow:0 4px 20px rgba(0,0,0,.2); min-width:160px;
+}
+.tbadge-g {
+  width:34px; height:34px;
+  background:linear-gradient(135deg,#4285f4,#34a853,#fbbc04,#ea4335);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:900; font-size:17px; color:#fff;
+}
+.tbadge-gf-text { font-family:'Montserrat',sans-serif; font-weight:900; font-size:12px; color:#0057b7; line-height:1; letter-spacing:-.3px; }
+.tbadge-gf-text .gf-accent { color:#e63; }
+.tbadge-info strong { display:block; font-family:'Montserrat',sans-serif; font-size:12.5px; font-weight:800; color:var(--text-dark); line-height:1.2; }
+.tbadge-stars { color:#f59e0b; font-size:11px; letter-spacing:.5px; }
+.tbadge-info small { color:var(--text-gray); font-size:11px; }
 
-    /* TESTIMONIALS */
-    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .testi-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 28px 26px; box-shadow: var(--shadow-card); }
-    .stars { font-size: 14px; color: #F0A500; margin-bottom: 14px; letter-spacing: 2px; }
-    .testi-text { font-size: 14px; color: var(--gray-500); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
-    .testi-author { display: flex; align-items: center; gap: 12px; }
-    .author-av { width: 42px; height: 42px; background: var(--ice); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .author-name { font-weight: 600; font-size: 14px; color: var(--navy); }
-    .author-title { font-size: 12px; color: var(--gray-500); }
+/* ═══════════════════════════════════════════
+   FLOATING FORM
+═══════════════════════════════════════════ */
+.floating-form-wrapper { position:relative; z-index:20; margin-top:-58px; }
+.floating-form-card {
+  background:var(--white); border-radius:20px;
+  box-shadow:0 10px 48px rgba(0,0,0,.16);
+  padding:26px 32px; display:flex; align-items:center;
+  gap:14px; flex-wrap:wrap; border-top:4px solid var(--purple);
+}
+.form-cta-text { flex:0 0 auto; min-width:155px; }
+.form-cta-text p { font-family:'Montserrat',sans-serif; font-weight:800; font-size:14.5px; color:var(--text-dark); line-height:1.35; margin:0; }
+.form-cta-text span { color:var(--purple); }
+.ff-input {
+  flex:1; min-width:130px;
+  border:1.5px solid var(--border); border-radius:8px;
+  padding:12px 16px; font-family:'Poppins',sans-serif; font-size:13.5px;
+  color:var(--text-dark); outline:none; background:var(--light-bg);
+  transition:border-color .2s, box-shadow .2s;
+}
+.ff-input:focus { border-color:var(--purple); background:#fff; box-shadow:0 0 0 3px rgba(142,36,170,.10); }
+.ff-input::placeholder { color:#9ca3af; }
+.btn-ff-submit {
+  background:var(--purple); color:#fff; border:none; border-radius:8px;
+  padding:13px 26px; font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:13.5px; cursor:pointer; white-space:nowrap;
+  display:flex; align-items:center; gap:8px;
+  transition:background .2s, transform .15s, box-shadow .2s;
+  box-shadow:0 4px 16px rgba(142,36,170,.28);
+}
+.btn-ff-submit:hover { background:var(--purple-dark); transform:translateY(-1px); box-shadow:0 6px 20px rgba(142,36,170,.38); }
 
-    /* CONTACT */
-    #contact { background: var(--navy); padding: 90px 0; position: relative; overflow: hidden; }
-    #contact::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(22,85,192,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(22,85,192,.06) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; }
-    .contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.25fr; gap: 60px; align-items: start; }
-    .contact-info .section-title { color: var(--white); }
-    .contact-info .section-sub { color: rgba(255,255,255,.58); }
-    .cd-list { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
-    .cd-item { display: flex; gap: 14px; align-items: flex-start; }
-    .cd-ico { width: 40px; height: 40px; background: rgba(22,85,192,.35); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-    .cd-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--sky); font-weight: 600; }
-    .cd-val { font-size: 14px; color: rgba(255,255,255,.82); margin-top: 2px; }
-    .cform { background: var(--white); border-radius: var(--radius-lg); padding: 38px 34px; box-shadow: 0 24px 64px rgba(0,0,0,.22); }
-    .cform-title { font-family: var(--font-display); font-size: 22px; color: var(--navy); margin-bottom: 5px; }
-    .cform-sub { font-size: 13px; color: var(--gray-500); margin-bottom: 26px; }
-    .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .fg { margin-bottom: 16px; }
-    .fg label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
-    .fg input, .fg select, .fg textarea { width: 100%; font-family: var(--font-body); font-size: 14px; color: var(--gray-800); background: var(--gray-50); border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); padding: 11px 13px; outline: none; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none; }
-    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(22,85,192,.1); background: var(--white); }
-    .fg textarea { resize: vertical; min-height: 96px; }
-    .submit-btn { width: 100%; justify-content: center; font-size: 15px; padding: 15px; border-radius: var(--radius-sm); margin-top: 4px; }
-    .form-note { text-align: center; font-size: 12px; color: var(--gray-500); margin-top: 12px; }
-    .form-note strong { color: var(--green); }
+/* ═══════════════════════════════════════════
+   INTEGRATIONS BANNER
+═══════════════════════════════════════════ */
+.integrations-section { padding:36px 0; background:#f1f5f9; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.int-label {
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:11px;
+  letter-spacing:2px; text-transform:uppercase; color:var(--text-gray);
+  white-space:nowrap; padding-right:24px; border-right:2px solid var(--border); margin-right:24px;
+}
+.int-logos-row { display:flex; align-items:center; gap:36px; flex-wrap:wrap; }
+.int-logo-item {
+  font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px;
+  color:#b0bec5; letter-spacing:-.3px; transition:color .2s; cursor:default; user-select:none;
+}
+.int-logo-item:hover { color:#78909c; }
 
-    /* FOOTER */
-    footer { background: #060E1B; padding: 52px 0 26px; }
-    .footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.07); }
-    .footer-brand .logo { margin-bottom: 14px; }
-    .footer-tagline { font-size: 13px; color: rgba(255,255,255,.38); max-width: 230px; line-height: 1.68; }
-    .social-links { display: flex; gap: 10px; margin-top: 20px; }
-    .social-link { width: 36px; height: 36px; background: rgba(255,255,255,.07); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); transition: background .2s, color .2s; }
-    .social-link:hover { background: var(--blue); color: var(--white); }
-    .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.32); font-weight: 600; margin-bottom: 16px; }
-    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,.56); transition: color .2s; }
-    .footer-col ul a:hover { color: var(--sky); }
-    .footer-bottom { padding-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    .footer-copy { font-size: 13px; color: rgba(255,255,255,.28); }
-    .comp-badges { display: flex; gap: 10px; }
-    .comp-badge { background: rgba(255,255,255,.07); border-radius: var(--radius-sm); padding: 5px 12px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45); letter-spacing: .05em; }
+/* ═══════════════════════════════════════════
+   SERVICES SECTION
+═══════════════════════════════════════════ */
+.services-main-section { padding:88px 0 72px; background:var(--light-bg); }
+.services-section-header { margin-bottom:48px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .why-grid { grid-template-columns: 1fr; }
-      .contact-inner { grid-template-columns: 1fr; }
-      .testi-grid { grid-template-columns: 1fr 1fr; }
-      .process-wrap { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .process-wrap::before { display: none; }
-    }
-    @media (max-width: 640px) {
-      .nav-links, .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      .svc-grid { grid-template-columns: 1fr; }
-      .form-row2 { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 18px; }
-      .section { padding: 60px 0; }
-      .testi-grid { grid-template-columns: 1fr; }
-      .process-wrap { grid-template-columns: 1fr; }
-      .why-panel { grid-template-columns: 1fr 1fr; }
-      .footer-top { flex-direction: column; gap: 28px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+.services-asym-grid { display:grid; grid-template-columns:340px 1fr; gap:18px; align-items:stretch; }
+
+/* Big purple card */
+.svc-big-card {
+  background:linear-gradient(160deg,var(--purple-mid) 0%,var(--purple-dark) 100%);
+  border-radius:20px; overflow:hidden; position:relative; min-height:460px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.svc-big-card-img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  opacity:.3; mix-blend-mode:luminosity;
+}
+.svc-big-card-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(60,0,80,.85) 0%,rgba(100,0,140,.4) 50%,transparent 100%);
+}
+.svc-big-card-body { position:relative; z-index:2; padding:28px; }
+.svc-big-tag {
+  display:inline-block; background:var(--green); color:#fff;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px;
+  letter-spacing:1.5px; text-transform:uppercase; border-radius:999px;
+  padding:4px 12px; margin-bottom:14px;
+}
+.svc-big-card h3 { color:#fff; font-size:22px; font-weight:800; margin-bottom:10px; line-height:1.25; }
+.svc-big-card p { color:rgba(255,255,255,.78); font-size:13.5px; line-height:1.6; margin-bottom:22px; }
+.btn-ghost-white {
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.4);
+  color:#fff; border-radius:999px; padding:9px 22px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px;
+  transition:background .2s, border-color .2s;
+}
+.btn-ghost-white:hover { background:rgba(255,255,255,.26); border-color:rgba(255,255,255,.7); color:#fff; }
+
+/* Small cards 2x2 grid */
+.svc-small-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.svc-sm-card {
+  background:var(--white); border-radius:14px; padding:26px 24px 22px;
+  box-shadow:0 2px 14px rgba(0,0,0,.07); border:1.5px solid var(--border);
+  display:flex; flex-direction:column; justify-content:space-between;
+  transition:box-shadow .25s, transform .25s, border-color .25s;
+}
+.svc-sm-card:hover { box-shadow:0 8px 32px rgba(142,36,170,.13); transform:translateY(-4px); border-color:rgba(142,36,170,.25); }
+.svc-sm-icon-wrap {
+  width:48px; height:48px; border-radius:12px;
+  background:var(--purple-light); display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px; transition:background .2s;
+}
+.svc-sm-card:hover .svc-sm-icon-wrap { background:var(--purple); }
+.svc-sm-icon-wrap i { color:var(--purple); font-size:20px; transition:color .2s; }
+.svc-sm-card:hover .svc-sm-icon-wrap i { color:#fff; }
+.svc-sm-card h4 { font-size:14.5px; font-weight:700; color:var(--text-dark); margin-bottom:8px; line-height:1.3; }
+.svc-sm-card p { color:var(--text-gray); font-size:13px; line-height:1.55; margin-bottom:18px; flex:1; }
+.btn-circle-arrow {
+  width:36px; height:36px; border-radius:50%; border:2px solid var(--border);
+  display:inline-flex; align-items:center; justify-content:center;
+  color:var(--purple); font-size:13px;
+  transition:background .2s, border-color .2s, transform .15s; flex-shrink:0;
+}
+.svc-sm-card:hover .btn-circle-arrow { background:var(--purple); border-color:var(--purple); color:#fff; transform:rotate(-45deg); }
+
+/* ═══════════════════════════════════════════
+   TRUST STRIP
+═══════════════════════════════════════════ */
+.trust-strip { background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple) 100%); padding:28px 0; }
+.trust-strip-inner { display:flex; align-items:center; justify-content:space-around; gap:24px; flex-wrap:wrap; }
+.trust-strip-item { display:flex; align-items:center; gap:14px; color:#fff; }
+.tsi-icon { width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.tsi-icon i { color:var(--green); font-size:20px; }
+.tsi-text strong { display:block; font-family:'Montserrat',sans-serif; font-size:18px; font-weight:900; color:#fff; line-height:1.1; }
+.tsi-text span { font-size:12.5px; opacity:.82; }
+.trust-strip-div { width:1px; height:48px; background:rgba(255,255,255,.2); }
+
+/* ═══════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════ */
+.stats-section { background:var(--navy); padding:72px 0; position:relative; overflow:hidden; }
+.stats-section::before {
+  content:''; position:absolute; top:-80px; right:-80px;
+  width:400px; height:400px;
+  background:radial-gradient(circle,rgba(142,36,170,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
+.stat-card {
+  padding:24px 16px; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; background:rgba(255,255,255,.03);
+  transition:background .25s, border-color .25s;
+}
+.stat-card:hover { background:rgba(255,255,255,.06); border-color:rgba(140,198,63,.25); }
+.stat-num { font-family:'Montserrat',sans-serif; font-size:40px; font-weight:900; color:var(--green); display:block; line-height:1; margin-bottom:8px; }
+.stat-label { color:#7b93b0; font-size:13px; line-height:1.4; }
+
+/* ═══════════════════════════════════════════
+   PROCESS SECTION
+═══════════════════════════════════════════ */
+.process-section { padding:88px 0; background:#fff; }
+.process-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; position:relative; }
+.process-grid::before {
+  content:''; position:absolute; top:26px;
+  left:calc(16.66% + 26px); right:calc(16.66% + 26px);
+  height:2px;
+  background:repeating-linear-gradient(to right,var(--purple) 0,var(--purple) 8px,transparent 8px,transparent 18px);
+}
+.process-step {
+  background:var(--light-bg); border-radius:14px;
+  padding:28px 24px 24px; text-align:center;
+  border:1.5px solid var(--border);
+  transition:box-shadow .25s, border-color .25s;
+}
+.process-step:hover { box-shadow:0 6px 24px rgba(0,0,0,.10); border-color:rgba(142,36,170,.2); }
+.process-num {
+  width:52px; height:52px; border-radius:50%; background:var(--purple);
+  color:#fff; font-family:'Montserrat',sans-serif; font-weight:900; font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 18px; box-shadow:0 4px 16px rgba(142,36,170,.38); position:relative; z-index:1;
+}
+.process-step h5 { font-size:14.5px; font-weight:700; margin-bottom:10px; color:var(--text-dark); }
+.process-step p { font-size:13px; color:var(--text-gray); line-height:1.6; }
+
+/* ═══════════════════════════════════════════
+   SPECIALTIES TEASER
+═══════════════════════════════════════════ */
+.specialties-section { padding:80px 0; background:var(--light-bg); }
+.specialties-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; }
+.spec-card {
+  background:#fff; border-radius:14px; padding:22px 18px; text-align:center;
+  border:1.5px solid var(--border); transition:box-shadow .25s, transform .25s, border-color .25s; cursor:pointer;
+}
+.spec-card:hover { box-shadow:0 8px 28px rgba(142,36,170,.12); transform:translateY(-4px); border-color:var(--purple); }
+.spec-icon {
+  width:52px; height:52px; border-radius:14px; background:var(--purple-light);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 14px; transition:background .2s;
+}
+.spec-card:hover .spec-icon { background:var(--purple); }
+.spec-icon i { color:var(--purple); font-size:20px; transition:color .2s; }
+.spec-card:hover .spec-icon i { color:#fff; }
+.spec-card h5 { font-size:13.5px; font-weight:700; color:var(--text-dark); margin:0; }
+
+/* ═══════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════ */
+.cta-banner {
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
+  padding:72px 0; text-align:center; position:relative; overflow:hidden;
+}
+.cta-banner::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at center,rgba(142,36,170,.18) 0%,transparent 65%);
+}
+.cta-banner .container { position:relative; z-index:1; }
+.cta-banner h2 { font-size:clamp(22px,3vw,38px); font-weight:900; color:#fff; margin-bottom:14px; }
+.cta-banner p { color:#8fa5be; max-width:520px; margin:0 auto 32px; font-size:15.5px; line-height:1.7; }
+.cta-banner-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn-cta-primary {
+  background:var(--purple); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:14.5px;
+  padding:14px 34px; border-radius:999px; border:2px solid var(--purple); display:inline-block;
+  transition:background .2s, transform .15s, box-shadow .2s; box-shadow:0 4px 20px rgba(142,36,170,.38);
+}
+.btn-cta-primary:hover { background:var(--purple-dark); border-color:var(--purple-dark); transform:translateY(-2px); box-shadow:0 8px 28px rgba(142,36,170,.48); color:#fff; }
+.btn-cta-outline {
+  background:transparent; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:14.5px;
+  padding:13px 34px; border-radius:999px; border:2px solid rgba(255,255,255,.3); display:inline-block;
+  transition:border-color .2s, background .2s;
+}
+.btn-cta-outline:hover { border-color:#fff; background:rgba(255,255,255,.08); color:#fff; }
+
+/* HIPAA pill */
+.hipaa-pill {
+  display:inline-flex; align-items:center; gap:7px;
+  background:rgba(140,198,63,.1); border:1px solid rgba(140,198,63,.28);
+  color:var(--green); border-radius:8px; padding:6px 14px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.5px;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.main-footer { background:var(--navy); padding:72px 0 0; color:#8fa5be; }
+.footer-brand-logo {
+  display:flex; align-items:center; gap:9px; text-decoration:none; margin-bottom:16px;
+}
+.footer-brand-logo .logo-icon { width:34px; height:34px; background:var(--purple); border-radius:9px; display:flex; align-items:center; justify-content:center; }
+.footer-brand-logo .logo-icon i { color:#fff; font-size:16px; }
+.footer-brand-logo .logo-apex { font-family:'Montserrat',sans-serif; font-weight:900; font-size:18px; color:#fff; }
+.footer-brand-logo .logo-sub { font-family:'Montserrat',sans-serif; font-weight:700; font-size:10px; color:var(--green); text-transform:uppercase; letter-spacing:.5px; display:block; }
+.footer-about-text { font-size:13.5px; line-height:1.75; max-width:270px; margin-bottom:22px; }
+.footer-social { display:flex; gap:8px; margin-bottom:22px; }
+.fsocial-btn {
+  width:36px; height:36px; border-radius:50%; border:1.5px solid #243553;
+  display:flex; align-items:center; justify-content:center;
+  color:#7b93b0; font-size:14px; transition:border-color .2s, color .2s, background .2s;
+}
+.fsocial-btn:hover { border-color:var(--purple); color:var(--purple); background:rgba(142,36,170,.1); }
+.footer-col-title {
+  display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:13.5px; color:#fff; margin-bottom:20px;
+  padding-bottom:10px; border-bottom:2px solid var(--green);
+}
+.footer-links { list-style:none; padding:0; }
+.footer-links li { margin-bottom:9px; }
+.footer-links a { color:#8fa5be; font-size:13.5px; display:flex; align-items:center; gap:7px; transition:color .2s, padding-left .2s; }
+.footer-links a::before { content:'›'; color:var(--green); font-size:16px; }
+.footer-links a:hover { color:var(--green); padding-left:4px; }
+.footer-contact-row { display:flex; align-items:flex-start; gap:12px; margin-bottom:16px; font-size:13.5px; color:#8fa5be; }
+.footer-contact-row i { color:var(--green); margin-top:3px; flex-shrink:0; }
+.footer-contact-row a { color:#8fa5be; }
+.footer-contact-row a:hover { color:var(--green); }
+.footer-hr { border:none; border-top:1px solid #162035; margin:50px 0 0; }
+.footer-bottom { background:#070d1e; padding:18px 0; }
+.footer-bottom-inner {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:14px; flex-wrap:wrap; font-size:12.5px; color:#4a607a;
+}
+.footer-bottom-links { display:flex; gap:20px; }
+.footer-bottom-links a { color:#5a7090; transition:color .2s; }
+.footer-bottom-links a:hover { color:var(--green); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width:1199px) { .services-asym-grid { grid-template-columns:300px 1fr; } }
+@media (max-width:991px) {
+  .hero-img-pane { display:none; }
+  .hero-h1 { font-size:30px; }
+  .services-asym-grid { grid-template-columns:1fr; }
+  .process-grid { grid-template-columns:repeat(2,1fr); }
+  .process-grid::before { display:none; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .specialties-grid { grid-template-columns:repeat(2,1fr); }
+  .trust-strip-div { display:none; }
+  .mega-menu-panel { display:none !important; }
+  .floating-form-card { flex-direction:column; align-items:stretch; }
+}
+@media (max-width:767px) {
+  .hero-checks { grid-template-columns:1fr; }
+  .svc-small-grid { grid-template-columns:1fr; }
+  .process-grid { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .hero-badges { flex-direction:column; }
+  .footer-bottom-inner { flex-direction:column; text-align:center; }
+  .int-logos-row { gap:20px; }
+}
+</style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header id="header">
+<!-- ████████████ TOP BAR ████████████ -->
+<div class="topbar">
   <div class="container">
-    <nav class="nav">
-      <a href="#" class="logo">
-        <div class="logo-box">
-          <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 3a1 1 0 011 1v3h3a1 1 0 010 2h-3v3a1 1 0 01-2 0v-3H8a1 1 0 010-2h3V7a1 1 0 011-1z"/></svg>
+    <div class="topbar-inner">
+      <div class="topbar-phone">
+        <i class="fa-solid fa-headset"></i>
+        <span>SALES: <a href="tel:+18885050582">+1 (888) 505-0582</a></span>
+      </div>
+      <div class="topbar-right">
+        <a href="#" class="topbar-link"><i class="fa-solid fa-right-to-bracket me-1"></i>Practice Login</a>
+        <span class="topbar-sep">|</span>
+        <a href="#" class="topbar-link"><i class="fa-solid fa-circle-user me-1"></i>Patient Portal</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████████████ HEADER / NAVBAR ████████████ -->
+<header class="main-header" id="mainHeader">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container position-relative align-items-center">
+
+      <!-- Logo -->
+      <a class="brand-logo navbar-brand me-3" href="index.html">
+        <div class="logo-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div>
+          <span class="logo-apex">Apex</span>
+          <span class="logo-sub">Health Billing</span>
         </div>
-        MedBill&nbsp;<span style="color:var(--blue)">Pro</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#testimonials">Reviews</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary nav-cta">Get Free Audit</a>
-      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
-        <span></span><span></span><span></span>
+
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-    </nav>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#services">Services</a>
-    <a href="#why-us">Why Us</a>
-    <a href="#process">Process</a>
-    <a href="#testimonials">Reviews</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact" class="btn btn-primary" style="justify-content:center">Get Free Audit</a>
-  </div>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto align-items-lg-center" style="gap:2px;">
+
+          <!-- SERVICES (Mega Menu) -->
+          <li class="nav-item mega-parent">
+            <a class="nav-link" href="services.html">Services <i class="fa-solid fa-chevron-down chev"></i></a>
+            <div class="mega-menu-panel">
+              <div class="row g-3">
+
+                <div class="col-lg-3">
+                  <div class="mega-menu-col-heading">Core Services</div>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-robot"></i></div>
+                    <div><span class="mega-item-title">AI Agents</span><span class="mega-item-desc">Automate every step of RCM with intelligent AI agents</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <div><span class="mega-item-title">Medical Billing Services</span><span class="mega-item-desc">Reduce denials and increase overall collections</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div><span class="mega-item-title">Laboratory Billing</span><span class="mega-item-desc">Automated lab billing solution with us</span></div>
+                  </a>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="mega-menu-col-heading">Specialized Services</div>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-laptop-medical"></i></div>
+                    <div><span class="mega-item-title">EMR Billing Services</span><span class="mega-item-desc">Billing support for every EMR platform</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-code"></i></div>
+                    <div><span class="mega-item-title">Medical Billing &amp; Coding</span><span class="mega-item-desc">Accurate coding and faster reimbursements</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div><span class="mega-item-title">MIPS Consulting</span><span class="mega-item-desc">Complete documentation for MIPS compliance</span></div>
+                  </a>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="mega-menu-col-heading">Revenue &amp; Compliance</div>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <div><span class="mega-item-title">Revenue Cycle Management</span><span class="mega-item-desc">Optimize your entire revenue cycle end-to-end</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div><span class="mega-item-title">Medical Billing Audit</span><span class="mega-item-desc">Identify gaps and recover lost revenue</span></div>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <div class="mega-item-icon"><i class="fa-solid fa-id-card"></i></div>
+                    <div><span class="mega-item-title">Credentialing Services</span><span class="mega-item-desc">Fast, reliable provider credentialing</span></div>
+                  </a>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="mega-promo">
+                    <div>
+                      <i class="fa-solid fa-shield-halved fa-2x mb-3" style="color:var(--green);"></i>
+                      <h4>Free Billing Audit</h4>
+                      <p>Discover revenue leaks at zero cost. Our experts analyze your claims and provide a full report.</p>
+                    </div>
+                    <a href="#consultation" class="mega-promo-btn">
+                      <i class="fa-solid fa-arrow-right me-1"></i> Claim Free Audit
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <!-- STATES WE SERVE -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">States We Serve <i class="fa-solid fa-chevron-down chev"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Texas</a></li>
+              <li><a class="dropdown-item" href="#">California</a></li>
+              <li><a class="dropdown-item" href="#">Florida</a></li>
+              <li><a class="dropdown-item" href="#">New York</a></li>
+              <li><a class="dropdown-item" href="#">New Jersey</a></li>
+              <li><a class="dropdown-item" href="#">Delaware</a></li>
+              <li><a class="dropdown-item" href="#">Pennsylvania</a></li>
+              <li><a class="dropdown-item" href="#">Nevada</a></li>
+              <li><a class="dropdown-item view-all" href="#">View More States</a></li>
+            </ul>
+          </li>
+
+          <!-- OUR EXPERTISE -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Expertise <i class="fa-solid fa-chevron-down chev"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Medical Group Practices</a></li>
+              <li><a class="dropdown-item" href="#">Outsource Billing Services</a></li>
+              <li><a class="dropdown-item" href="#">Billing for Small Practices</a></li>
+              <li><a class="dropdown-item" href="#">Hospitals &amp; Health Systems</a></li>
+              <li><a class="dropdown-item" href="#">Independent Practices</a></li>
+            </ul>
+          </li>
+
+          <!-- SPECIALTIES -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="specialties.html" data-bs-toggle="dropdown">Specialties <i class="fa-solid fa-chevron-down chev"></i></a>
+            <ul class="dropdown-menu" style="min-width:270px;">
+              <li><a class="dropdown-item" href="#">Pain Management Billing</a></li>
+              <li><a class="dropdown-item" href="#">Orthopedics Billing</a></li>
+              <li><a class="dropdown-item" href="#">Cardiology Billing</a></li>
+              <li><a class="dropdown-item" href="#">OBGYN Billing</a></li>
+              <li><a class="dropdown-item" href="#">Oncology Billing</a></li>
+              <li><a class="dropdown-item" href="#">Gastroenterology Billing</a></li>
+              <li><a class="dropdown-item" href="#">Radiology Billing</a></li>
+              <li><a class="dropdown-item" href="#">Podiatry Billing</a></li>
+              <li><a class="dropdown-item" href="#">Nephrology Billing</a></li>
+              <li><a class="dropdown-item" href="#">Pediatrics Billing</a></li>
+              <li><a class="dropdown-item view-all" href="#">View All Specialties</a></li>
+            </ul>
+          </li>
+
+          <!-- COMPANY -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">Company <i class="fa-solid fa-chevron-down chev"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="about.html">About Us</a></li>
+              <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
+              <li><a class="dropdown-item" href="#">Locations</a></li>
+              <li><a class="dropdown-item" href="#">Partnerships</a></li>
+            </ul>
+          </li>
+
+          <!-- RESOURCES -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources <i class="fa-solid fa-chevron-down chev"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Blog</a></li>
+              <li><a class="dropdown-item" href="#">Articles</a></li>
+              <li><a class="dropdown-item" href="#">Whitepapers</a></li>
+              <li><a class="dropdown-item" href="#">Case Studies</a></li>
+              <li><a class="dropdown-item" href="#">eBooks</a></li>
+              <li><a class="dropdown-item" href="#">Infographics</a></li>
+              <li><a class="dropdown-item" href="#">Testimonials</a></li>
+            </ul>
+          </li>
+
+          <!-- PRICING -->
+          <li class="nav-item">
+            <a class="nav-link" href="pricing.html">Pricing</a>
+          </li>
+
+        </ul>
+
+        <div class="nav-actions ms-2">
+          <button class="btn-nav-search" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <a href="#consultation" class="btn-get-consult">Get Consultation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 
-
-<!-- ===== HERO ===== -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge"><div class="badge-dot"></div>Serving USA Healthcare Providers</div>
-        <h1 class="hero-title">Maximize Your Practice<br>Revenue with <em>Expert<br>Medical Billing</em></h1>
-        <p class="hero-sub">End-to-end Revenue Cycle Management that cuts denials, accelerates reimbursements, and keeps you fully HIPAA-compliant &mdash; so you can focus on patient care.</p>
-        <div class="hero-btns">
-          <a href="#contact" class="btn btn-primary">Get a Free Audit &rarr;</a>
-          <a href="#services" class="btn btn-white">Explore Services</a>
-        </div>
-        <div class="hero-stats">
-          <div><div class="hs-val">98%</div><div class="hs-label">Clean Claim Rate</div></div>
-          <div><div class="hs-val">$2M+</div><div class="hs-label">Revenue Recovered</div></div>
-          <div><div class="hs-val">48hr</div><div class="hs-label">Turnaround Time</div></div>
-          <div><div class="hs-val">99%</div><div class="hs-label">Client Retention</div></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hv-card">
-          <div class="hvc-top">
-            <div class="hvc-icon">&#128202;</div>
-            <div><div class="hvc-label">Claims Processed This Month</div><div class="hvc-value">1,284 Claims</div></div>
-          </div>
-          <div class="prog-bar"><div class="prog-fill" style="width:94%"></div></div>
-          <div class="chip-row">
-            <span class="chip">&#10003; Approved 94%</span>
-            <span class="chip">Pending 4%</span>
-            <span class="chip">Denied 2%</span>
-          </div>
-        </div>
-        <div class="hv-card">
-          <div class="hvc-top">
-            <div class="hvc-icon">&#128176;</div>
-            <div><div class="hvc-label">A/R Follow-Up Recovery</div><div class="hvc-value">$48,320 Collected</div></div>
-          </div>
-          <div class="prog-bar"><div class="prog-fill" style="width:72%"></div></div>
-          <div class="chip-row">
-            <span class="chip">30% A/R Reduction</span>
-            <span class="chip">&#8593; 10% Revenue Boost</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ████████████ HERO ████████████ -->
+<section class="hero-section">
+  <div class="hero-dots"></div>
+  <div class="hero-img-pane">
+    <img
+      src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop"
+      alt="Professional medical billing team"
+      loading="eager"
+    />
   </div>
-</section>
-
-
-<!-- ===== TRUST STRIP ===== -->
-<section id="trust">
   <div class="container">
-    <div class="trust-inner">
-      <div class="trust-item"><div class="ti-ico">&#128274;</div>HIPAA Compliant</div>
-      <div class="trust-item"><div class="ti-ico">&#128203;</div>ICD-10 Certified Coders</div>
-      <div class="trust-item"><div class="ti-ico">&#9889;</div>48-Hour Turnaround</div>
-      <div class="trust-item"><div class="ti-ico">&#127760;</div>40+ Specialties</div>
-      <div class="trust-item"><div class="ti-ico">&#127942;</div>99% Client Retention</div>
-      <div class="trust-item"><div class="ti-ico">&#129309;</div>Fiverr &amp; Upwork Pro</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== SERVICES ===== -->
-<section id="services" class="section">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="tag">Our Services</span>
-      <h2 class="section-title">Complete Medical Billing &amp;<br>RCM Solutions</h2>
-      <p class="section-sub">From coding to collections, every step of your revenue cycle handled with precision and full compliance.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc-card reveal d1">
-        <div class="svc-ico">&#127991;</div>
-        <h3 class="svc-title">ICD-10 &amp; CPT Coding</h3>
-        <p class="svc-desc">Accurate medical coding using the latest ICD-10-CM/PCS and CPT codes to ensure maximum reimbursements and zero coding-error denials.</p>
-      </div>
-      <div class="svc-card reveal d2">
-        <div class="svc-ico">&#128260;</div>
-        <h3 class="svc-title">AR Follow-Up</h3>
-        <p class="svc-desc">Systematic follow-up on all outstanding accounts receivable — aging reports, payer calls, and escalation workflows to recover every dollar owed.</p>
-      </div>
-      <div class="svc-card reveal d3">
-        <div class="svc-ico">&#128683;</div>
-        <h3 class="svc-title">Denial Management</h3>
-        <p class="svc-desc">Root-cause analysis on every denial, rapid re-submission, and structured appeals to convert denials into paid claims consistently.</p>
-      </div>
-      <div class="svc-card reveal d4">
-        <div class="svc-ico">&#129534;</div>
-        <h3 class="svc-title">Patient Billing</h3>
-        <p class="svc-desc">Clear, accurate patient statements and flexible payment plans. Professional communication that improves collections while protecting relationships.</p>
-      </div>
-      <div class="svc-card reveal d1">
-        <div class="svc-ico">&#9989;</div>
-        <h3 class="svc-title">Eligibility Verification</h3>
-        <p class="svc-desc">Real-time insurance eligibility checks before every visit to prevent claim rejections at the source and eliminate billing surprises for patients.</p>
-      </div>
-      <div class="svc-card reveal d2">
-        <div class="svc-ico">&#128200;</div>
-        <h3 class="svc-title">Revenue Cycle Management</h3>
-        <p class="svc-desc">Full-service RCM from scheduling to final payment — charge entry, claim scrubbing, electronic submission, posting, and detailed monthly reporting.</p>
-      </div>
-      <div class="svc-card reveal d3">
-        <div class="svc-ico">&#127973;</div>
-        <h3 class="svc-title">Credentialing Services</h3>
-        <p class="svc-desc">Provider enrollment with Medicare, Medicaid, and commercial payers so you can start billing faster with zero administrative delays.</p>
-      </div>
-      <div class="svc-card reveal d4">
-        <div class="svc-ico">&#128203;</div>
-        <h3 class="svc-title">Free Billing Audit</h3>
-        <p class="svc-desc">Comprehensive billing audits that uncover revenue leaks, compliance risks, and coding inefficiencies — delivered as a free, actionable report.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== WHY US ===== -->
-<section id="why-us" class="section section--alt">
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-panel reveal">
-        <div class="stat-box">
-          <div class="stat-num">98<span>%</span></div>
-          <div class="stat-lbl">Clean Claim Rate</div>
-          <div class="stat-note">&#8593; Industry avg 85%</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">48<span>hr</span></div>
-          <div class="stat-lbl">Turnaround Time</div>
-          <div class="stat-note">Fastest TAT</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">30<span>%</span></div>
-          <div class="stat-lbl">A/R Reduction</div>
-          <div class="stat-note">Avg client result</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">99<span>%</span></div>
-          <div class="stat-lbl">Client Retention</div>
-          <div class="stat-note">Since inception</div>
-        </div>
-      </div>
-      <div class="reveal d2">
-        <span class="tag">Why Choose Us</span>
-        <h2 class="section-title">Billing Precision That<br>Protects Your Bottom Line</h2>
-        <p class="section-sub" style="margin-bottom:28px">Certified expertise, transparent reporting, and zero tolerance for revenue leakage &mdash; that is the MedBill Pro difference.</p>
-        <div class="why-features">
-          <div class="why-item">
-            <div class="wi-num">1</div>
-            <div>
-              <div class="wi-title">HIPAA-Compliant Processes</div>
-              <div class="wi-desc">Every workflow, tool, and team member operates under strict HIPAA compliance &mdash; protecting your patients and your practice from costly violations.</div>
+    <div class="row">
+      <div class="col-lg-7 col-xl-6">
+        <div class="hero-content-wrap">
+          <div class="hero-eyebrow"><i class="fa-solid fa-shield-halved"></i> Trusted by 500+ Physicians Nationwide</div>
+          <h1 class="hero-h1">Top-rated <span class="highlight">Medical Billing</span><br>Company in the USA</h1>
+          <p class="hero-sub">Reduce claim denials and get paid faster with Apex Health Billing's expert medical billing and coding services — built for every specialty.</p>
+          <ul class="hero-checks">
+            <li><i class="fa-solid fa-circle-check"></i>HIPAA-Compliant</li>
+            <li><i class="fa-solid fa-circle-check"></i>98% Clean Claim Rate</li>
+            <li><i class="fa-solid fa-circle-check"></i>Certified Coders</li>
+            <li><i class="fa-solid fa-circle-check"></i>24/7 Support</li>
+          </ul>
+          <div class="hero-badges">
+            <!-- Google Badge -->
+            <div class="trust-badge-card">
+              <div class="tbadge-g">G</div>
+              <div class="tbadge-info">
+                <strong>Google Reviews</strong>
+                <div class="tbadge-stars">★★★★★</div>
+                <small>4.9 out of 5</small>
+              </div>
             </div>
-          </div>
-          <div class="why-item">
-            <div class="wi-num">2</div>
-            <div>
-              <div class="wi-title">Certified Coders on Every Claim</div>
-              <div class="wi-desc">ICD-10 and CPT-certified coders trained across 40+ specialties for consistently accurate, denial-proof submissions every time.</div>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="wi-num">3</div>
-            <div>
-              <div class="wi-title">Transparent Monthly Reporting</div>
-              <div class="wi-desc">KPI dashboards with denial rates, collection rates, and A/R aging breakdowns. Full visibility, clear data, and no surprises.</div>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="wi-num">4</div>
-            <div>
-              <div class="wi-title">Faster Reimbursements</div>
-              <div class="wi-desc">First-pass clean claims mean you get paid 30&ndash;50% faster than typical in-house billing, improving your cash flow from day one.</div>
+            <!-- GoodFirms — pure CSS, no broken image hotlink -->
+            <div class="trust-badge-card">
+              <div class="tbadge-gf-text">good<span class="gf-accent">firms</span></div>
+              <div class="tbadge-info">
+                <strong>GoodFirms</strong>
+                <div class="tbadge-stars">★★★★★</div>
+                <small>5.0 out of 5</small>
+              </div>
             </div>
           </div>
         </div>
@@ -443,256 +792,377 @@
   </div>
 </section>
 
-
-<!-- ===== PROCESS ===== -->
-<section id="process" class="section">
+<!-- ████████████ FLOATING FORM ████████████ -->
+<div class="floating-form-wrapper" id="consultation">
   <div class="container">
-    <div class="section-header reveal" style="text-align:center">
-      <span class="tag">How We Work</span>
-      <h2 class="section-title">A Simple, Proven Process</h2>
-      <p class="section-sub" style="margin:0 auto">From your first consultation to consistent monthly payments &mdash; every step is built for speed, accuracy, and compliance.</p>
+    <div class="floating-form-card">
+      <div class="form-cta-text">
+        <p>Get a <span>Free</span><br>Consultation Today</p>
+      </div>
+      <input class="ff-input" type="text" placeholder="First Name" />
+      <input class="ff-input" type="text" placeholder="Last Name" />
+      <input class="ff-input" type="email" placeholder="Email Address" />
+      <button class="btn-ff-submit">
+        Request Consultation <i class="fa-solid fa-arrow-right"></i>
+      </button>
     </div>
-    <div class="process-wrap">
-      <div class="step reveal d1">
-        <div class="step-circle">01</div>
-        <div class="step-title">Free Consultation</div>
-        <div class="step-desc">We audit your current billing, identify gaps, and design a custom RCM strategy at no cost.</div>
-      </div>
-      <div class="step reveal d2">
-        <div class="step-circle">02</div>
-        <div class="step-title">Onboarding &amp; Setup</div>
-        <div class="step-desc">Seamless EHR integration, payer enrollment, and full team onboarding in as little as 3 business days.</div>
-      </div>
-      <div class="step reveal d3">
-        <div class="step-circle">03</div>
-        <div class="step-title">Coding &amp; Submission</div>
-        <div class="step-desc">Certified coders process your claims with full compliance scrubbing before every electronic submission.</div>
-      </div>
-      <div class="step reveal d4">
-        <div class="step-circle">04</div>
-        <div class="step-title">Follow-Up &amp; Appeals</div>
-        <div class="step-desc">Proactive A/R tracking, denial appeals, and payer follow-up until every clean claim is fully paid.</div>
-      </div>
-      <div class="step reveal d5">
-        <div class="step-circle">05</div>
-        <div class="step-title">Reporting &amp; Growth</div>
-        <div class="step-desc">Monthly performance reports with actionable insights to continually improve your revenue cycle.</div>
+  </div>
+</div>
+
+<!-- ████████████ INTEGRATIONS BANNER ████████████ -->
+<section class="integrations-section" style="margin-top:40px;">
+  <div class="container">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span class="int-label">Works With</span>
+      <div class="int-logos-row">
+        <span class="int-logo-item">AthenaHealth</span>
+        <span class="int-logo-item">Kareo</span>
+        <span class="int-logo-item">Epic</span>
+        <span class="int-logo-item">Cerner</span>
+        <span class="int-logo-item">AdvancedMD</span>
+        <span class="int-logo-item">DrChrono</span>
+        <span class="int-logo-item">Meditech</span>
+        <span class="int-logo-item">NextGen</span>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ===== TESTIMONIALS ===== -->
-<section id="testimonials" class="section section--alt">
+<!-- ████████████ SERVICES SECTION ████████████ -->
+<section class="services-main-section">
   <div class="container">
-    <div class="section-header reveal" style="text-align:center">
-      <span class="tag">Client Reviews</span>
-      <h2 class="section-title">Trusted by USA Healthcare Practices</h2>
-      <p class="section-sub" style="margin:0 auto">Real results from real clients across multiple specialties and states.</p>
+    <div class="services-section-header">
+      <span class="section-eyebrow">What We Offer</span>
+      <h2 class="section-title">Which Medical Billing Services<br>Does Apex Health Billing Provide?</h2>
+      <p class="section-sub" style="max-width:580px;">
+        Apex Health Billing provides end-to-end medical billing services for your specialty.
+        We handle your entire revenue cycle — so you can focus on delivering excellent patient care.
+      </p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal d1">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-text">"MedBill Pro reduced our denial rate from 18% to under 3% in just 60 days. Our cash flow improved dramatically and their reporting is crystal clear every month."</p>
-        <div class="testi-author">
-          <div class="author-av">&#128104;&#8205;&#9877;</div>
-          <div><div class="author-name">Dr. James R.</div><div class="author-title">Internal Medicine, Texas</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d2">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-text">"Hired via Upwork and could not be happier. They handled our entire cardiology billing within a week of onboarding. Revenue is up 22% in just 3 months."</p>
-        <div class="testi-author">
-          <div class="author-av">&#128105;&#8205;&#9877;</div>
-          <div><div class="author-name">Dr. Sarah M.</div><div class="author-title">Cardiologist, California</div></div>
-        </div>
-      </div>
-      <div class="testi-card reveal d3">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-text">"Finally a billing partner that truly understands mental health billing codes. Fast turnaround, clean claims, and excellent communication at every step."</p>
-        <div class="testi-author">
-          <div class="author-av">&#129489;&#8205;&#9877;</div>
-          <div><div class="author-name">Dr. Kevin T.</div><div class="author-title">Psychiatry, New York</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
+    <div class="services-asym-grid">
 
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-inner">
-      <div class="contact-info reveal">
-        <span class="tag" style="background:rgba(22,85,192,.22);color:var(--sky)">Get in Touch</span>
-        <h2 class="section-title">Ready to Increase<br>Your Revenue?</h2>
-        <p class="section-sub">Book a free billing audit. We will review your current process and show you exactly where revenue is being lost &mdash; no cost, no obligation.</p>
-        <div class="cd-list">
-          <div class="cd-item">
-            <div class="cd-ico">&#128231;</div>
-            <div><div class="cd-lbl">Email</div><div class="cd-val">contact@medbillpro.com</div></div>
-          </div>
-          <div class="cd-item">
-            <div class="cd-ico">&#128188;</div>
-            <div><div class="cd-lbl">Fiverr &amp; Upwork</div><div class="cd-val">Search "MedBillPro" on both platforms</div></div>
-          </div>
-          <div class="cd-item">
-            <div class="cd-ico">&#128348;</div>
-            <div><div class="cd-lbl">Response Time</div><div class="cd-val">Within 4 business hours (EST)</div></div>
-          </div>
-          <div class="cd-item">
-            <div class="cd-ico">&#127760;</div>
-            <div><div class="cd-lbl">Availability</div><div class="cd-val">Monday &ndash; Saturday, 9 AM &ndash; 7 PM EST</div></div>
-          </div>
+      <!-- Big purple card -->
+      <div class="svc-big-card">
+        <img class="svc-big-card-img"
+             src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&q=80&auto=format&fit=crop"
+             alt="Medical billing specialist at work" />
+        <div class="svc-big-card-overlay"></div>
+        <div class="svc-big-card-body">
+          <span class="svc-big-tag">Most Popular</span>
+          <h3>Medical Billing &amp;<br>Coding Services</h3>
+          <p>Accurate coding and billing to reduce denials and boost revenue cycle efficiency across all 40+ specialties we serve.</p>
+          <a href="services.html" class="btn-ghost-white">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
-      <div class="cform reveal d2">
-        <div class="cform-title">Get Your Free Billing Audit</div>
-        <div class="cform-sub">No commitment required. Identify your revenue gaps at zero cost.</div>
-        <div class="form-row2">
-          <div class="fg"><label>First Name *</label><input type="text" id="fname" placeholder="John" /></div>
-          <div class="fg"><label>Last Name *</label><input type="text" id="lname" placeholder="Smith" /></div>
-        </div>
-        <div class="fg"><label>Email Address *</label><input type="email" id="email" placeholder="john@yourpractice.com" /></div>
-        <div class="form-row2">
-          <div class="fg"><label>Phone Number</label><input type="tel" id="phone" placeholder="+1 (555) 000-0000" /></div>
-          <div class="fg">
-            <label>Medical Specialty *</label>
-            <select id="specialty">
-              <option value="">Select specialty...</option>
-              <option>Internal Medicine</option>
-              <option>Family Practice</option>
-              <option>Cardiology</option>
-              <option>Orthopedics</option>
-              <option>Neurology</option>
-              <option>Psychiatry / Mental Health</option>
-              <option>Radiology</option>
-              <option>Oncology</option>
-              <option>Pediatrics</option>
-              <option>Other</option>
-            </select>
+      <!-- 4 small cards (2×2) -->
+      <div class="svc-small-grid">
+
+        <div class="svc-sm-card">
+          <div>
+            <div class="svc-sm-icon-wrap"><i class="fa-solid fa-hospital-user"></i></div>
+            <h4>Billing for Small Practices</h4>
+            <p>Custom billing support designed to help small practices grow and get paid faster without added overhead.</p>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <a href="#" style="font-size:13px;color:var(--purple);font-weight:600;font-family:'Montserrat',sans-serif;">Learn More</a>
+            <a href="#" class="btn-circle-arrow"><i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
-        <div class="fg"><label>Current Billing Challenge</label><textarea id="message" placeholder="Describe your biggest billing pain point — high denials, slow reimbursements, staffing issues, etc."></textarea></div>
-        <button type="button" class="btn btn-primary submit-btn" id="submitBtn">Send My Free Audit Request &rarr;</button>
-        <p class="form-note"><strong>&#128274; 100% Confidential</strong> &nbsp;&middot;&nbsp; HIPAA-Compliant &nbsp;&middot;&nbsp; No Spam, Ever</p>
+
+        <div class="svc-sm-card">
+          <div>
+            <div class="svc-sm-icon-wrap"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h4>Medical Billing Audit Services</h4>
+            <p>We identify billing gaps and compliance errors to maximize your revenue and reduce financial risk.</p>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <a href="#" style="font-size:13px;color:var(--purple);font-weight:600;font-family:'Montserrat',sans-serif;">Learn More</a>
+            <a href="#" class="btn-circle-arrow"><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="svc-sm-card">
+          <div>
+            <div class="svc-sm-icon-wrap"><i class="fa-solid fa-stethoscope"></i></div>
+            <h4>Speciality-focused Billing</h4>
+            <p>A billing partner that deeply understands the unique coding and compliance needs of your specialty.</p>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <a href="#" style="font-size:13px;color:var(--purple);font-weight:600;font-family:'Montserrat',sans-serif;">Learn More</a>
+            <a href="#" class="btn-circle-arrow"><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="svc-sm-card">
+          <div>
+            <div class="svc-sm-icon-wrap"><i class="fa-solid fa-robot"></i></div>
+            <h4>AI-Powered RCM Automation</h4>
+            <p>Leverage intelligent AI agents to automate eligibility checks, claim scrubbing, and denial management.</p>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <a href="#" style="font-size:13px;color:var(--purple);font-weight:600;font-family:'Montserrat',sans-serif;">Learn More</a>
+            <a href="#" class="btn-circle-arrow"><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ===== FOOTER ===== -->
-<footer>
+<!-- ████████████ TRUST STRIP ████████████ -->
+<div class="trust-strip">
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo" style="color:var(--white)">
-          <div class="logo-box">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 3a1 1 0 011 1v3h3a1 1 0 010 2h-3v3a1 1 0 01-2 0v-3H8a1 1 0 010-2h3V7a1 1 0 011-1z"/></svg>
+    <div class="trust-strip-inner">
+      <div class="trust-strip-item">
+        <div class="tsi-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <div class="tsi-text"><strong>500+</strong><span>Physicians Trust Us</span></div>
+      </div>
+      <div class="trust-strip-div"></div>
+      <div class="trust-strip-item">
+        <div class="tsi-icon"><i class="fa-solid fa-hospital"></i></div>
+        <div class="tsi-text"><strong>40+</strong><span>Medical Specialties</span></div>
+      </div>
+      <div class="trust-strip-div"></div>
+      <div class="trust-strip-item">
+        <div class="tsi-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="tsi-text"><strong>1,100+</strong><span>Certified Billers &amp; Coders</span></div>
+      </div>
+      <div class="trust-strip-div"></div>
+      <div class="trust-strip-item">
+        <div class="tsi-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="tsi-text"><strong>98%</strong><span>First Pass Clean Claim Rate</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████████████ STATS ████████████ -->
+<section class="stats-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow" style="color:var(--green);">Our Results</span>
+      <h2 class="section-title" style="color:#fff;">Our Success in Numbers</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num">$1B+</span><div class="stat-label">Value of Claims<br>Processed</div></div>
+      <div class="stat-card"><span class="stat-num">&lt;30</span><div class="stat-label">Accounts Receivable<br>Days</div></div>
+      <div class="stat-card"><span class="stat-num">98%</span><div class="stat-label">First Pass<br>Clean Claim Rate</div></div>
+      <div class="stat-card"><span class="stat-num">99%</span><div class="stat-label">Customer<br>Retention Rate</div></div>
+      <div class="stat-card"><span class="stat-num">10M+</span><div class="stat-label">Claims<br>Processed</div></div>
+      <div class="stat-card"><span class="stat-num">30%</span><div class="stat-label">Revenue<br>Improvement</div></div>
+      <div class="stat-card"><span class="stat-num">48h</span><div class="stat-label">Average<br>Turnaround Time</div></div>
+      <div class="stat-card"><span class="stat-num">24/7</span><div class="stat-label">Dedicated<br>Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████ PROCESS ████████████ -->
+<section class="process-section">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">How Our Medical Billing Process Works</h2>
+      <p class="section-sub mx-auto" style="max-width:560px;">Our streamlined billing cycle helps practices get paid faster with fewer denials — from first contact to final payment.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <h5>Practice Assessment</h5>
+        <p>We evaluate your workflows, specialty needs, and goals to create a personalized billing strategy.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <h5>Patient Intake &amp; Verification</h5>
+        <p>We gather patient details and verify insurance eligibility and coverage before services are rendered.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <h5>Accurate Medical Coding</h5>
+        <p>Certified coders assign precise CPT, ICD-10, and HCPCS codes to ensure clean, accurate claims.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <h5>Fast Claim Submission</h5>
+        <p>Claims are electronically submitted and scrubbed to minimize delays, rejections, and denials.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">5</div>
+        <h5>Payment Posting</h5>
+        <p>We post payments from payers and patients, reconciling balances and ensuring accurate tracking.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">6</div>
+        <h5>Reports &amp; Follow-Up</h5>
+        <p>Receive timely payouts and detailed performance reports with full transparency on your revenue cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████ SPECIALTIES TEASER ████████████ -->
+<section class="specialties-section">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-eyebrow">Medical Specialties</span>
+      <h2 class="section-title">Billing Expertise Across 40+ Specialties</h2>
+      <p class="section-sub mx-auto" style="max-width:520px;">Every specialty has unique coding rules. Our certified billers specialize in yours — from cardiology to podiatry.</p>
+    </div>
+    <div class="specialties-grid">
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-heart-pulse"></i></div><h5>Cardiology</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-bone"></i></div><h5>Orthopedics</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-baby"></i></div><h5>Pediatrics</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-brain"></i></div><h5>Neurology</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-lungs"></i></div><h5>Pulmonology</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-eye"></i></div><h5>Ophthalmology</h5></div>
+      <div class="spec-card"><div class="spec-icon"><i class="fa-solid fa-person-pregnant"></i></div><h5>OBGYN</h5></div>
+      <div class="spec-card" style="border:2px dashed var(--purple);background:var(--purple-light);">
+        <div class="spec-icon" style="background:rgba(142,36,170,.15);"><i class="fa-solid fa-plus" style="color:var(--purple);"></i></div>
+        <h5 style="color:var(--purple);">40+ More Specialties</h5>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="specialties.html" class="btn-cta-primary" style="font-size:14px;padding:13px 30px;">
+        View All Specialties <i class="fa-solid fa-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████ CTA BANNER ████████████ -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="hipaa-pill mb-4" style="margin:0 auto 24px;"><i class="fa-solid fa-shield-halved"></i> HIPAA Compliant &amp; Fully Secured</div>
+    <h2>Ready to Maximize Your<br>Practice Revenue?</h2>
+    <p>Join 500+ physicians who trust Apex Health Billing for end-to-end medical billing, coding, and revenue cycle optimization.</p>
+    <div class="cta-banner-btns">
+      <a href="#consultation" class="btn-cta-primary"><i class="fa-solid fa-calendar-check me-2"></i>Book a Free Consultation</a>
+      <a href="tel:+18885050582" class="btn-cta-outline"><i class="fa-solid fa-phone me-2"></i>Call +1 (888) 505-0582</a>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████ FOOTER ████████████ -->
+<footer class="main-footer">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Col 1: Brand -->
+      <div class="col-lg-3 col-md-6">
+        <a href="index.html" class="footer-brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div>
+            <span class="logo-apex">Apex</span>
+            <span class="logo-sub">Health Billing</span>
           </div>
-          MedBill&nbsp;<span style="color:var(--sky)">Pro</span>
         </a>
-        <p class="footer-tagline">Expert Medical Billing &amp; RCM services for US healthcare providers. HIPAA-compliant and results-driven.</p>
-        <div class="social-links">
-          <a href="#" class="social-link" aria-label="LinkedIn">in</a>
-          <a href="#" class="social-link" aria-label="Twitter">X</a>
-          <a href="#" class="social-link" aria-label="Fiverr">F</a>
-          <a href="#" class="social-link" aria-label="Upwork">U</a>
+        <p class="footer-about-text">
+          Apex Health Billing provides end-to-end medical billing and coding services to over
+          40 medical specialties across the United States. We handle your revenue cycle —
+          so you can focus on care.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="fsocial-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="fsocial-btn" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="fsocial-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="fsocial-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="fsocial-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="hipaa-pill mt-4"><i class="fa-solid fa-shield-halved"></i> HIPAA Compliant</div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="col-lg-3 col-md-6">
+        <span class="footer-col-title">Our Services</span>
+        <ul class="footer-links">
+          <li><a href="#">AI Agents for RCM</a></li>
+          <li><a href="#">Medical Billing Services</a></li>
+          <li><a href="#">Medical Coding Services</a></li>
+          <li><a href="#">Revenue Cycle Management</a></li>
+          <li><a href="#">MIPS Consulting</a></li>
+          <li><a href="#">Medical Billing Audit</a></li>
+          <li><a href="#">Laboratory Billing</a></li>
+          <li><a href="#">EMR Billing Services</a></li>
+          <li><a href="#">Credentialing Services</a></li>
+          <li><a href="#">Patient Eligibility Verification</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Specialties -->
+      <div class="col-lg-3 col-md-6">
+        <span class="footer-col-title">Specialties</span>
+        <ul class="footer-links">
+          <li><a href="#">Cardiology Billing</a></li>
+          <li><a href="#">Pain Management Billing</a></li>
+          <li><a href="#">Orthopedics Billing</a></li>
+          <li><a href="#">OBGYN Billing</a></li>
+          <li><a href="#">Oncology Billing</a></li>
+          <li><a href="#">Gastroenterology Billing</a></li>
+          <li><a href="#">Radiology Billing</a></li>
+          <li><a href="#">Podiatry Billing</a></li>
+          <li><a href="#">Nephrology Billing</a></li>
+          <li><a href="specialties.html" style="color:var(--green);font-weight:600;">View All Specialties →</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div class="col-lg-3 col-md-6">
+        <span class="footer-col-title">Contact Us</span>
+        <div class="footer-contact-row"><i class="fa-solid fa-phone"></i><div><a href="tel:+18885050582">+1 (888) 505-0582</a></div></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-envelope"></i><div><a href="mailto:info@apexhealthbilling.com">info@apexhealthbilling.com</a></div></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-location-dot"></i><div>5900 Balcones Drive, STE 100<br>Austin, TX 78731, USA</div></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-clock"></i><div>Mon – Fri: 9:00 AM – 6:00 PM EST<br>Sat: 10:00 AM – 2:00 PM EST</div></div>
+        <div style="margin-top:20px;">
+          <p style="font-size:13px;color:#7b93b0;margin-bottom:10px;font-family:'Montserrat',sans-serif;font-weight:600;">Subscribe to Our Newsletter</p>
+          <div style="display:flex;gap:8px;">
+            <input type="email" placeholder="Your email address" style="flex:1;background:#111d3a;border:1.5px solid #1e2d4a;border-radius:8px;padding:10px 14px;color:#cdd9e8;font-size:13px;outline:none;" />
+            <button style="background:var(--green);border:none;border-radius:8px;padding:10px 14px;color:#fff;cursor:pointer;font-size:14px;"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#services">ICD-10 Coding</a></li>
-          <li><a href="#services">AR Follow-Up</a></li>
-          <li><a href="#services">Denial Management</a></li>
-          <li><a href="#services">Patient Billing</a></li>
-          <li><a href="#services">Credentialing</a></li>
-          <li><a href="#services">Revenue Cycle Mgmt</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#why-us">Why Choose Us</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#testimonials">Client Reviews</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Compliance</h4>
-        <ul>
-          <li><a href="#">HIPAA Policy</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Data Security</a></li>
-        </ul>
-      </div>
+
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 MedBillPro. All rights reserved.</p>
-      <div class="comp-badges">
-        <span class="comp-badge">HIPAA</span>
-        <span class="comp-badge">ISO 27001</span>
-        <span class="comp-badge">ICD-10 Certified</span>
+    <hr class="footer-hr" />
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <span>© 2025 Apex Health Billing. All Rights Reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">HIPAA Notice</a>
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
     </div>
   </div>
 </footer>
 
-
-<!-- ===== JAVASCRIPT (clean, no inline handlers) ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-(function () {
-  /* Header shadow on scroll */
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 20);
+  // Sticky header shadow
+  const hdr = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 20));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    });
   });
 
-  /* Mobile menu */
-  var btn  = document.getElementById('hamburgerBtn');
-  var menu = document.getElementById('mobileMenu');
-  btn.addEventListener('click', function () {
-    menu.classList.toggle('open');
+  // Close mobile nav on link click
+  document.querySelectorAll('#mainNav .nav-link:not(.dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', () => {
+      const c = document.getElementById('mainNav');
+      if (c.classList.contains('show')) bootstrap.Collapse.getInstance(c)?.hide();
+    });
   });
-  menu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () { menu.classList.remove('open'); });
-  });
-
-  /* Scroll reveal */
-  var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.10 });
-    els.forEach(function (el) { io.observe(el); });
-  } else {
-    els.forEach(function (el) { el.classList.add('visible'); });
-  }
-
-  /* Form submit */
-  document.getElementById('submitBtn').addEventListener('click', function () {
-    var f = document.getElementById('fname').value.trim();
-    var e = document.getElementById('email').value.trim();
-    var s = document.getElementById('specialty').value;
-    if (!f || !e || !s) {
-      alert('Please fill in your name, email, and specialty before submitting.');
-      return;
-    }
-    this.textContent = 'Request Sent! We will respond within 4 hours.';
-    this.style.background    = '#0DBB7A';
-    this.style.boxShadow     = '0 8px 24px rgba(13,187,122,0.35)';
-    this.style.pointerEvents = 'none';
-  });
-}());
 </script>
 </body>
 </html>
